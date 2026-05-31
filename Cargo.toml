@@ -1,0 +1,12 @@
+[package]
+name = "lau-supergeometry"
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+description = "Supergeometry: Z₂-graded algebras, supercommutators, Berezinian, supermanifolds, and agent state spaces with fermionic/bosonic degrees of freedom"
+repository = "https://github.com/SuperInstance/lau-supergeometry"
+
+[dependencies]
+serde = { version = "1", features = ["derive"] }
+nalgebra = "0.33"
+num-traits = "0.2"
