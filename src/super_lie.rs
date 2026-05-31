@@ -1,6 +1,6 @@
 //! Super Lie algebra: supercommutator satisfying super Jacobi identity.
 
-use crate::graded::{GradedElement, Parity};
+use crate::graded::GradedElement;
 use crate::supercommutator::supercommutator;
 
 /// Super Jacobi identity check:
@@ -17,9 +17,9 @@ pub fn super_jacobi_check(
     let ab = supercommutator(a, b);
     let c_ab = supercommutator(c, &ab);
 
-    let sign1 = if a.parity.grade() * c.parity.grade() % 2 != 0 { -1.0 } else { 1.0 };
-    let sign2 = if b.parity.grade() * a.parity.grade() % 2 != 0 { -1.0 } else { 1.0 };
-    let sign3 = if c.parity.grade() * b.parity.grade() % 2 != 0 { -1.0 } else { 1.0 };
+    let sign1 = if !(a.parity.grade() * c.parity.grade()).is_multiple_of(2) { -1.0 } else { 1.0 };
+    let sign2 = if !(b.parity.grade() * a.parity.grade()).is_multiple_of(2) { -1.0 } else { 1.0 };
+    let sign3 = if !(c.parity.grade() * b.parity.grade()).is_multiple_of(2) { -1.0 } else { 1.0 };
 
     let total = sign1 * a_bc.value + sign2 * b_ca.value + sign3 * c_ab.value;
     total.abs() < 1e-10

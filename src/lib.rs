@@ -1,3 +1,4 @@
+#![deny(unsafe_code)]
 //! # lau-supergeometry
 //!
 //! Supergeometry — the mathematical framework behind supersymmetry and graded algebra.

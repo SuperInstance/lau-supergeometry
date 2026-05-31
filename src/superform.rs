@@ -1,7 +1,5 @@
 //! Superforms: differential forms on supermanifolds.
 
-use crate::graded::{GradedElement, Parity};
-use crate::supermanifold::Supermanifold;
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 
@@ -71,7 +69,7 @@ impl SuperForm {
                     let _sign = if Self::count_bits_below(d1, 64) % 2 == 0 { 1.0 } else { -1.0 };
                     // Simplified sign calculation
                     let bits_d2_in_d1 = d2 & ((1u64 << d1.count_ones()) - 1);
-                    let actual_sign = if bits_d2_in_d1.count_ones() % 2 == 0 { 1.0 } else { -1.0 };
+                    let actual_sign = if bits_d2_in_d1.count_ones().is_multiple_of(2) { 1.0 } else { -1.0 };
                     result.add_component(c1 | c2, d1 | d2, actual_sign * v1 * v2);
                 }
             }
@@ -93,7 +91,7 @@ pub fn volume_form(p: usize, q: usize) -> SuperForm {
     let mut f = SuperForm::new(p, q);
     // dx₁ ∧ ... ∧ dx_p ∧ dθ₁ ∧ ... ∧ dθ_q
     let total = p + q;
-    let full_mask = ((1u64 << total) - 1) << 0;
+    let _full_mask = (1u64 << total) - 1;
     // But dxᵢ occupies bits 0..p, dθⱼ occupies bits p..p+q
     // For the standard volume form, coefficient = 1 (body), diff mask = all
     let diff_mask = (1u64 << total) - 1;

@@ -37,7 +37,7 @@ impl SuperAlgebra {
         for i in 0..n {
             for j in 0..n {
                 if let (Some(ab), Some(ba)) = (self.multiply(i, j), self.multiply(j, i)) {
-                    let sign = if self.basis[i].parity.grade() * self.basis[j].parity.grade() % 2 != 0 { -1.0 } else { 1.0 };
+                    let sign = if !(self.basis[i].parity.grade() * self.basis[j].parity.grade()).is_multiple_of(2) { -1.0 } else { 1.0 };
                     if (ab.0 - sign * ba.0).abs() > 1e-10 {
                         return false;
                     }
@@ -55,7 +55,7 @@ impl SuperAlgebra {
                 for k in 0..n {
                     let left = self.multiply(i, j).map(|(v, _)| v);
                     let right = self.multiply(j, k).map(|(v, _)| v);
-                    if let (Some(ab), Some(bc)) = (left, right) {
+                    if let (Some(_ab), Some(_bc)) = (left, right) {
                         // Simplified check for scalar algebras
                         let labc = self.mult_table.get(&(i, j))
                             .and_then(|_| self.mult_table.get(&(i, k)));

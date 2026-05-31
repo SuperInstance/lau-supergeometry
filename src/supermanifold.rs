@@ -1,7 +1,5 @@
 //! Supermanifolds: coordinate ring = C^∞(M) ⊗ Λ(θ₁,...,θ_q)
 
-use crate::graded::{GradedElement, GradedVec, Parity};
-use crate::exterior::ExteriorAlgebra;
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 

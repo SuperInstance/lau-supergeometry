@@ -1,6 +1,6 @@
 //! Exterior algebra Λ(V) as a superalgebra.
 
-use crate::graded::{GradedElement, Parity};
+use crate::graded::GradedElement;
 use serde::{Deserialize, Serialize};
 
 /// Exterior algebra on n generators.

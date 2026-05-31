@@ -1,6 +1,6 @@
 //! Supervector spaces, supertrace, and superdeterminant (Berezinian).
 
-use nalgebra::{DMatrix, DVector};
+use nalgebra::DMatrix;
 use serde::{Deserialize, Serialize};
 
 /// A supervector space of dimension (p|q).

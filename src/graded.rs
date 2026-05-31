@@ -121,6 +121,12 @@ pub struct GradedVec {
     pub odd_part: Vec<(f64, String)>,
 }
 
+impl Default for GradedVec {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 impl GradedVec {
     pub fn new() -> Self {
         GradedVec { even_part: vec![], odd_part: vec![] }

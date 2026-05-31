@@ -1,7 +1,6 @@
 //! Application: Agent state spaces with fermionic (exclusive) and bosonic (inclusive)
 //! degrees of freedom.
 
-use crate::graded::{GradedElement, GradedVec, Parity};
 use crate::supervector::{SuperMatrix, SuperVectorSpace};
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
@@ -67,6 +66,12 @@ pub struct MultiAgentSystem {
     pub agents: Vec<AgentState>,
 }
 
+impl Default for MultiAgentSystem {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 impl MultiAgentSystem {
     pub fn new() -> Self {
         MultiAgentSystem { agents: vec![] }
@@ -114,7 +119,7 @@ impl MultiAgentSystem {
     /// Construct the combined super-matrix representation.
     pub fn to_super_matrix(&self) -> SuperMatrix {
         let (p, q) = self.total_dimension();
-        let n = p + q;
+        let _n = p + q;
         // Diagonal matrix with bosonic values and fermionic indicators
         let mut m = SuperMatrix::new(p, q);
         let mut row = 0;

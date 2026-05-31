@@ -5,7 +5,6 @@
 //!
 //! For n variables: ∫ θ₁θ₂...θₙ dθₙ...dθ₁ = 1
 
-use crate::exterior::ExteriorAlgebra;
 use serde::{Deserialize, Serialize};
 
 /// Berezin integral over a Grassmann algebra with n generators.
@@ -26,7 +25,7 @@ impl BerezinIntegrator {
     /// Integrate over a single Grassmann variable.
     /// A function of θ is f = a + bθ.
     /// ∫(a + bθ) dθ = b (coefficient of θ).
-    pub fn integrate_single(coeff_constant: f64, coeff_theta: f64) -> f64 {
+    pub fn integrate_single(_coeff_constant: f64, coeff_theta: f64) -> f64 {
         coeff_theta
     }
 

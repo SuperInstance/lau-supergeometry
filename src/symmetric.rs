@@ -43,7 +43,7 @@ impl SymmetricAlgebra {
             for j in 0..self.n_generators {
                 let (v_ij, _) = self.sym_product(i, j);
                 let (v_ji, _) = self.sym_product(j, i);
-                let sign = if self.generator_parities[i].grade() * self.generator_parities[j].grade() % 2 != 0 { -1.0 } else { 1.0 };
+                let sign = if !(self.generator_parities[i].grade() * self.generator_parities[j].grade()).is_multiple_of(2) { -1.0 } else { 1.0 };
                 if (v_ij - sign * v_ji).abs() > 1e-10 {
                     return false;
                 }
